@@ -73,7 +73,8 @@ class AlgoliaSearchRecordExtractor
 
   # Get the list of all HTML nodes to index
   def html_nodes
-    document = Nokogiri::HTML(@file.content)
+    content = Jekyll::Renderer.new(@file.site, @file).run
+    document = Nokogiri::HTML(content)
     document.css(@config['record_css_selector'])
   end
 
